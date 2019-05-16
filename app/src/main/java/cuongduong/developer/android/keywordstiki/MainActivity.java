@@ -16,28 +16,22 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.recycler_keywords)
     RecyclerView recyclerViewKeywords;
 
+    String[] array = { "xiaomi", "bitis hunter", "bts", "balo", "bitis hunter x", "tai nghe", "harry potter",
+            "anker", "iphone", "balo nữ", "nguyễn nhật ánh", "đắc nhân tâm", "ipad", "senka", "tai nghe bluetooth",
+            "son", "maybelline", "laneige", "kem chống nắng", "anh chính là thanh xuân của em" };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        KeywordAdapter keywordAdapter = new KeywordAdapter(this, addTempKeywords());
+        ArrayList<String> keywords = Algorithms.displayKeywordsInTwoLines(array);
+
+        KeywordAdapter keywordAdapter = new KeywordAdapter(this, keywords);
 
         recyclerViewKeywords.setHasFixedSize(true);
         recyclerViewKeywords.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerViewKeywords.setAdapter(keywordAdapter);
-    }
-
-    private ArrayList<String> addTempKeywords() {
-        ArrayList<String> keywords = new ArrayList<>();
-        keywords.add("xiaomi");
-        keywords.add("bitis hunter");
-        keywords.add("bts");
-        keywords.add("balo");
-        keywords.add("bitis hunter x");
-        keywords.add("tai nghe");
-
-        return keywords;
     }
 }
